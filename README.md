@@ -1,118 +1,143 @@
-# 🤖 Hukuki AI Danışman Sistemi
+# GossipAI - Modern Yapay Zeka Sohbet Uygulaması
 
-Yapay zeka destekli hukuki doküman analizi ve danışmanlık sistemi.
+GossipAI, Google Gemini API kullanarak geliştirilmiş, modern ve kullanıcı dostu bir sohbet robotu uygulamasıdır. Farklı karakterlerle sohbet edebilir, kendi karakterlerinizi oluşturabilir ve yapay zeka teknolojisinin gücünü deneyimleyebilirsiniz.
+
+![GossipAI Screenshot](./screenshots/gossipai-screenshot.png)
 
 ## 🚀 Özellikler
 
-- 📄 PDF Doküman İşleme ve Analiz
-- 🔍 Semantik Arama
-- 💡 AI Destekli Soru-Cevap
-- 🎯 Vektör Tabanlı Benzerlik Analizi
-- 🔄 Otomatik Yedekleme Sistemi
+- **Modern Arayüz**: Minimalist ama etkileyici, göz yormayan canlı tasarım
+- **Karakter Çeşitliliği**: Farklı kişiliklere sahip sohbet asistanları
+- **Kişiselleştirme**: Kendi karakterlerinizi oluşturma ve özelleştirme
+- **Kullanıcı Yönetimi**: Kayıt, giriş, JWT kimlik doğrulama
+- **Misafir Kullanıcı Desteği**: Kayıt olmadan da kullanabilme
+- **Dinamik Tema**: Açık ve koyu mod desteği
+- **Responsive Tasarım**: Tüm cihazlarda sorunsuz çalışma
+- **PWA Desteği**: Mobil cihazlara kurulabilme
+- **Docker Desteği**: Kolay kurulum ve dağıtım
 
-## 🛠️ Teknolojik Altyapı
+## 🎨 Tasarım Özellikleri
+
+- **Renk Paleti**:
+  - Ana Renk: Canlı Mavi (#3A86FF)
+  - Yardımcı Renkler: Turuncu (#FF7F11), Mor (#845EC2), Yeşil (#2ECC71)
+  - Arka Plan: Açık mod (#F9F9F9), Koyu mod (#1B1B3A)
+
+- **Animasyonlar ve Geçişler**:
+  - Hover efektleri
+  - Yumuşak geçişler
+  - Etkileşimli UI elementleri
+
+- **Neumorphism Tasarım**:
+  - Hafif gölgeler
+  - Yumuşak geçişler
+  - Yuvarlatılmış köşeler
+
+## 🛠️ Kurulum
+
+### Docker ile Kurulum
+
+1. Projeyi klonlayın:
+   ```
+   git clone https://github.com/ugurer/gossipai.git
+   cd gossipai
+   ```
+
+2. `.env.example` dosyasını `.env` olarak kopyalayın ve gerekli değişkenleri ayarlayın:
+   ```
+   cp .env.example .env
+   ```
+
+3. `.env` dosyasını düzenleyin ve `GEMINI_API_KEY` değerini gerçek API anahtarınızla değiştirin.
+
+4. Docker Compose ile uygulamayı başlatın:
+   ```
+   docker-compose up -d
+   ```
+
+5. Tarayıcınızda `http://localhost` adresine giderek uygulamayı kullanmaya başlayabilirsiniz.
+
+### Manuel Kurulum
+
+#### Backend
+
+1. Backend klasörüne gidin:
+   ```
+   cd backend
+   ```
+
+2. Bağımlılıkları yükleyin:
+   ```
+   npm install
+   ```
+
+3. `.env` dosyasını oluşturun ve gerekli değişkenleri ayarlayın:
+   ```
+   NODE_ENV=development
+   PORT=5000
+   MONGO_URI=mongodb://localhost:27017/gossipai
+   JWT_SECRET=your_jwt_secret_here
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+4. Sunucuyu başlatın:
+   ```
+   npm start
+   ```
+
+#### Frontend
+
+1. Frontend klasörüne gidin:
+   ```
+   cd frontend
+   ```
+
+2. Bağımlılıkları yükleyin:
+   ```
+   npm install
+   ```
+
+3. Geliştirme sunucusunu başlatın:
+   ```
+   npm start
+   ```
+
+4. Tarayıcınızda `http://localhost:3000` adresine giderek uygulamayı kullanmaya başlayabilirsiniz.
+
+## 🧠 Kullanılan Teknolojiler
 
 ### Backend
-- FastAPI
-- Sentence Transformers
-- FAISS Vector DB
-- Google Gemini Pro
-- PyPDF2
+- Node.js
+- Express.js
+- MongoDB
+- JWT Kimlik Doğrulama
+- Google Gemini API
 
 ### Frontend
 - React
-- TypeScript
-- Material-UI
+- Material UI
+- React Router
 - Axios
+- PWA
 
-## 📋 Gereksinimler
+## 📱 Ekran Görüntüleri
 
-### Backend
-- Python 3.9+
-- pip
-- virtualenv
-
-### Frontend
-- Node.js 16+
-- npm/yarn
-
-### API Anahtarları
-- Google Cloud API Anahtarı
-
-## 🔧 Kurulum
-
-1. Repository'yi klonlayın:
-```bash
-git clone <repo-url>
-cd hukuki-ai
-```
-
-2. Backend kurulumu:
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-3. Frontend kurulumu:
-```bash
-cd frontend
-npm install
-```
-
-4. Ortam değişkenlerini ayarlayın:
-- `backend/.env` dosyasını oluşturun:
-```env
-GOOGLE_API_KEY=your_api_key
-GOOGLE_CLOUD_PROJECT=your_project_id
-GOOGLE_CLOUD_LOCATION=us-central1
-VECTOR_DB_PATH=./data/vector_db/vectors
-UPLOAD_DIR=./data/uploads
-```
-
-- `frontend/.env` dosyasını oluşturun:
-```env
-REACT_APP_API_URL=http://localhost:8001
-REACT_APP_MAX_UPLOAD_SIZE=10485760
-```
-
-## 🚀 Çalıştırma
-
-1. Backend'i başlatın:
-```bash
-cd backend
-PYTHONPATH=. uvicorn api.main:app --host 0.0.0.0 --port 8001
-```
-
-2. Frontend'i başlatın:
-```bash
-cd frontend
-npm start
-```
-
-## 📁 Dizin Yapısı
-
-```
-hukuki-ai/
-├── backend/
-│   ├── api/           # FastAPI endpoint'leri
-│   ├── core/          # Temel işlevler
-│   └── tests/         # Testler
-├── frontend/
-│   ├── public/        # Statik dosyalar
-│   └── src/           # React kaynak kodları
-└── docs/             # Dokümantasyon
-```
+![Ana Sayfa](./screenshots/home.png)
+![Karakter Seçimi](./screenshots/characters.png)
+![Sohbet Ekranı](./screenshots/chat.png)
 
 ## 🤝 Katkıda Bulunma
 
-1. Bu repository'yi fork'layın
-2. Feature branch'i oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit'leyin (`git commit -m 'feat: add amazing feature'`)
-4. Branch'inizi push'layın (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
+1. Bu depoyu fork edin
+2. Yeni bir özellik dalı oluşturun (`git checkout -b feature/amazing-feature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
+4. Dalınıza push edin (`git push origin feature/amazing-feature`)
+5. Bir Pull Request açın
 
-## 📝 Lisans
+## 📄 Lisans
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın. 
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
+## 📞 İletişim
+
+Sorularınız veya önerileriniz için [issues](https://github.com/ugurer/gossipai/issues) bölümünü kullanabilirsiniz. 
